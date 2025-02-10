@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<title>Hello, world!</title>
+</head>
+
+<body class="container">
+	<h1>Thymleaf Tutorials!</h1>
+	<h1 style="color: red;">message expression #{...}</h1>
+	<p data-th-text="#{youtube.name}">Welcome to our grocery store!</p>
+
+
+	<h1 style="color: aqua;">Variable expression ${...}</h1>
+	<h1 th:text="${today}"></h1>
+	<h1>Today date is : [[${today}]]</h1>
+	<hr />
+	<h3 th:text="${user.id}"></h3>
+	<h3 th:text="${user.name}"></h3>
+	<h3 th:text="${user.address}"></h3>
+	<hr>
+	<h1 style="color: red;">Variable selection expression *{...}</h1>
+	<div th:object="${user}">
+		<p>name : [[*{id}]]</p>
+		<p>name : [[*{name}]]</p>
+		<p>name : [[*{address}]]</p>
+	</div>
+
+	<hr>
+
+	<h1 style="color: red;">Link url expression @{...}</h1>
+	<a th:href="@{'profile/'+${user.id}}">profile</a><br>
+	<a th:href="@{profile}">profile</a>
+	<hr>
+	<h1><br></h1>
+	<h1>Fragment Expression ~{...}</h1>
+
+	<div th:replace="~{header::myheader}"></div>
+
+	<div th:fragment="~{footer::footer}"></div>
+	<hr>
+	<h1>literal</h1>
+	<p>
+		in two years, it will be<span th:text="2015+2"></span>
+	</p>
+	<div th:if="${status}==true">
+		<p>true status</p>
+	</div>
+	<div th:if="${2+3}==5">
+		<p>true block</p>
+	</div>
+	<div th:if="${2+3}!=5">
+		<p>true number</p>
+	</div>
+	<div th:if="${2<3}">
+		<p>true block</p>
+	</div>
+	<div th:if="${u2}!=null">
+		<p>true block</p>
+	</div>
+
+	<h1> Literal subsitution</h1>
+	<h3 th:text="'hello guys welcome to  '+${msg}"></h3>
+
+	<hr>
+	<h1>Arithmetic operation</h1>
+	<div th:with="num=${2+3}">
+
+		num=[[${num}]]
+		<br>
+		<th:block th:with="even=${num%2!=0 }">
+			even block [[${even}]]
+		</th:block>
+	</div>
+
+	<h1>Elvis Operator</h1>
+
+	<hr>
+	<h1>Setting values to specific attributes</h1>
+	<input type="submit" value="subscribe" th:attr="value=#{subscribe.submit}">
+
+	<h1> If Else</h1>
+	<div th:if="2<3">
+		<h3>3 greater than 2 -if block</h3>
+	</div>
+
+	<div th:unless="2<3">
+		<h3>3 greater than 2 -else block</h3>
+	</div>
+	
+	<div th:if="10>11">
+			<h3>10 greater than 11 -if block</h3>
+		</div>
+
+		<div th:unless="10>11">
+			<h3>11 greater than 10 -else block</h3>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
